@@ -1,0 +1,21 @@
+@charset "utf-8";
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,fieldset,p,button,table,th,td,pre{margin:0;padding:0;}
+body,div,dl,dt,dd,h1,h2,h3,h4,h5,h6,form,fieldset,p,th,td,input,textarea,select,button,pre,a{ color:#222;}
+ 
+textarea { width:100%;}
+select,input,img, button {vertical-align:middle;}
+ul, ol {list-style-type:none; }
+em, address { font-style:normal;}
+table { border-collapse:collapse; border-spacing:0; width:100%;}
+a { color:#666; text-decoration:none;}
+a:focus,
+a:hover { text-decoration:none;}
+fieldset, img, button{border:0;}
+
+input[type=text]::-ms-clear {display: none;}
+
+button, input[type="submit"] {cursor: pointer;}
+
+input[type="file"] { width:100%;}
+input[type="radio"] { vertical-align:text-bottom;}
+input {border-radius: 0; border: 1px solid #666; outline: none;}
