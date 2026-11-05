@@ -5,12 +5,12 @@ include('common.php');
 $param = null;
 $user_id = $_GET['id'] == null ? "":$_GET['id'];
 if($user_id != "") {
-	$data = $pdo->row("SELECT *, AES_DECRYPT(UNHEX(user_tel),'smart_manager_311226') as user_tel FROM user_info WHERE user_tp = 2 AND state = 1 AND user_id = '".$user_id."'", $param);
+	$data = $pdo->row("SELECT *, AES_DECRYPT(UNHEX(user_tel),KEY) as user_tel FROM user_info WHERE user_tp = 2 AND state = 1 AND user_id = '".$user_id."'", $param);
 	$expert_no = $data['user_no'];
 	$v_num = $pdo->single("SELECT asign_050_num FROM asign_050_info WHERE num_state = 1 AND user_seq = ".$expert_no, $param);
 	$type = $pdo->single("SELECT card_tp FROM user_info WHERE user_tp = 2 AND state = 1 AND user_id LIKE '".$user_id."'", $param);
 } else {
-	$data = $pdo->row("SELECT *, AES_DECRYPT(UNHEX(user_tel),'smart_manager_311226') as user_tel FROM user_info WHERE user_no = ".$_SESSION['no'], $param);
+	$data = $pdo->row("SELECT *, AES_DECRYPT(UNHEX(user_tel),KEY) as user_tel FROM user_info WHERE user_no = ".$_SESSION['no'], $param);
 	$type = $_GET['type'];
 }
 
