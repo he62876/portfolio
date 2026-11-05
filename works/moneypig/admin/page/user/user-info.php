@@ -15,7 +15,7 @@ $param1 = null;
 
 $member_no = $_GET['member_no'] == null ? 0 : $_GET['member_no'];
 if($member_no != 0) {
-    $sql = "SELECT *, AES_DECRYPT(UNHEX(member_tel),'moneypig_ong_230412') as member_tel, AES_DECRYPT(UNHEX(address),'moneypig_tro_230412') as address FROM member_info WHERE member_no = ".$member_no;
+    $sql = "SELECT *, AES_DECRYPT(UNHEX(member_tel),KEY) as member_tel, AES_DECRYPT(UNHEX(address),KEY) as address FROM member_info WHERE member_no = ".$member_no;
 	$data = $pdo->row($sql, $param);
 
 	$id_type = array(1=>'카카오', 2=>'구글', 3=>'애플');
