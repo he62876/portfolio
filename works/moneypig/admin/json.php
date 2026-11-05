@@ -9,7 +9,7 @@ $pass = $_POST['admin_pw'];
 
 $param = null;
 
-$sql = "SELECT * FROM agency_info WHERE agency_id = '$id' AND agency_pw = (HEX(AES_ENCRYPT('$pass','moneypig_tro_230412'))) AND agency_state = 1";
+$sql = "SELECT * FROM agency_info WHERE agency_id = '$id' AND agency_pw = (HEX(AES_ENCRYPT('$pass',KEY))) AND agency_state = 1";
 $row = $pdo->query($sql);
 $data = $row->fetch(PDO::FETCH_ASSOC);
 
