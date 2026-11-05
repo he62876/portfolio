@@ -71,7 +71,7 @@ $page_start = ($page - 1) * $list; // 페이지의 시작 (SQL문에서 LIMIT �
 ///////////////////////////////////////////////////////////////////////
 
 
-$sql = "SELECT *,AES_DECRYPT(UNHEX(address),'moneypig_tro_230412') as member_address FROM member_info ".$where." ORDER BY reg_date DESC LIMIT $page_start, $list";
+$sql = "SELECT *,AES_DECRYPT(UNHEX(address),KEY) as member_address FROM member_info ".$where." ORDER BY reg_date DESC LIMIT $page_start, $list";
 $list_data = $pdo->query($sql, $param);
 
 $type_nm = array(1=>"kakao", 2=>"google", 3=>"apple");
