@@ -36,11 +36,11 @@ if($board == 'cntr') {
 
     if($mode == 'input') {
         $sql = "INSERT INTO agency_info (agency_tp, grade, agency_nm, ceo_nm, agency_id, agency_pw, tel, email, biz_num, address, address_det, account_bank, account_num, account_owner, agency_state, reg_date)
-                VALUES (1, 1, '$agency_nm', '$ceo_nm', '$agency_id', (HEX(AES_ENCRYPT('$agency_pw','moneypig_tro_230412'))), (HEX(AES_ENCRYPT('$tel','moneypig_tro_230412'))), '$email', '$biz_num', '$address', '$address_det', '$account_bank', (HEX(AES_ENCRYPT('$account_num','moneypig_tro_230412'))), '$account_owner', 1, NOW())";
+                VALUES (1, 1, '$agency_nm', '$ceo_nm', '$agency_id', (HEX(AES_ENCRYPT('$agency_pw',KEY))), (HEX(AES_ENCRYPT('$tel',KEY))), '$email', '$biz_num', '$address', '$address_det', '$account_bank', (HEX(AES_ENCRYPT('$account_num',KEY))), '$account_owner', 1, NOW())";
     }
     if($mode == 'update') {
-        $sql = "UPDATE agency_info SET agency_nm = '$agency_nm', ceo_nm = '$ceo_nm', tel = (HEX(AES_ENCRYPT('$tel','moneypig_tro_230412'))), email = '$email',
-				biz_num = '$biz_num', address = '$address', address_det = '$address_det', account_bank = '$account_bank', account_num = (HEX(AES_ENCRYPT('$account_num','moneypig_tro_230412'))), account_owner = '$account_owner', up_reg_date = NOW()
+        $sql = "UPDATE agency_info SET agency_nm = '$agency_nm', ceo_nm = '$ceo_nm', tel = (HEX(AES_ENCRYPT('$tel',KEY))), email = '$email',
+				biz_num = '$biz_num', address = '$address', address_det = '$address_det', account_bank = '$account_bank', account_num = (HEX(AES_ENCRYPT('$account_num',KEY))), account_owner = '$account_owner', up_reg_date = NOW()
                 WHERE agency_no = '$no'";
     }
     if($mode == 'delete') {
@@ -54,7 +54,7 @@ if($board == 'cntr') {
 	}
 
 	if($mode == 'pass') {
-		$sql = "UPDATE agency_info SET agency_pw = (HEX(AES_ENCRYPT('$agency_pw','moneypig_tro_230412'))) WHERE agency_no = '$no'";
+		$sql = "UPDATE agency_info SET agency_pw = (HEX(AES_ENCRYPT('$agency_pw',KEY))) WHERE agency_no = '$no'";
 	}
 }
 
@@ -80,11 +80,11 @@ if($board == 'agcy') {
 		
 		$distributor_no = $_POST['distributor_no'];
 		$sql = "INSERT INTO agency_info (agency_code, agency_tp, grade, distributor_no, agency_nm, ceo_nm, agency_id, agency_pw, tel, email, biz_num, address, address_det, account_bank, account_num, account_owner, agency_state, reg_date)
-				VALUES ('$agency_code', '$agency_tp', 2, '$distributor_no', '$agency_nm', '$ceo_nm', '$agency_id', (HEX(AES_ENCRYPT('$agency_pw','moneypig_tro_230412'))), (HEX(AES_ENCRYPT('$tel','moneypig_tro_230412'))), '$email', '$biz_num', '$address', '$address_det', '$account_bank', (HEX(AES_ENCRYPT('$account_num','moneypig_tro_230412'))), '$account_owner', 1, NOW())";
+				VALUES ('$agency_code', '$agency_tp', 2, '$distributor_no', '$agency_nm', '$ceo_nm', '$agency_id', (HEX(AES_ENCRYPT('$agency_pw',KEY))), (HEX(AES_ENCRYPT('$tel',KEY))), '$email', '$biz_num', '$address', '$address_det', '$account_bank', (HEX(AES_ENCRYPT('$account_num',KEY))), '$account_owner', 1, NOW())";
     }
     if($mode == 'update') {
-        $sql = "UPDATE agency_info SET agency_nm = '$agency_nm', ceo_nm = '$ceo_nm', tel = (HEX(AES_ENCRYPT('$tel','moneypig_tro_230412'))), email = '$email',
-				biz_num = '$biz_num', address = '$address', address_det = '$address_det', account_bank = '$account_bank', account_num = (HEX(AES_ENCRYPT('$account_num','moneypig_tro_230412'))), account_owner = '$account_owner', up_reg_date = NOW()
+        $sql = "UPDATE agency_info SET agency_nm = '$agency_nm', ceo_nm = '$ceo_nm', tel = (HEX(AES_ENCRYPT('$tel',KEY))), email = '$email',
+				biz_num = '$biz_num', address = '$address', address_det = '$address_det', account_bank = '$account_bank', account_num = (HEX(AES_ENCRYPT('$account_num',KEY))), account_owner = '$account_owner', up_reg_date = NOW()
                 WHERE agency_no = '$no'";
     }
 	if($mode == 'amt') {
@@ -97,7 +97,7 @@ if($board == 'agcy') {
     }
 
 	if($mode == 'pass') {
-		$sql = "UPDATE agency_info SET agency_pw = (HEX(AES_ENCRYPT('$agency_pw','moneypig_tro_230412'))) WHERE agency_no = '$no'";
+		$sql = "UPDATE agency_info SET agency_pw = (HEX(AES_ENCRYPT('$agency_pw',KEY))) WHERE agency_no = '$no'";
 	}
 	
 }
@@ -150,14 +150,14 @@ if($board == 'sell') {
 
 
 			$sql = "INSERT INTO agency_info (agency_tp, grade, distributor_no, top_agency_no, agency_nm, ceo_nm, agency_id, agency_pw, tel, email, biz_num, address, address_det, account_bank, account_num, account_owner, agency_state, reg_date)
-					VALUES ('$agency_tp', 3, '$distributor_no', '$top_agency_no', '$agency_nm', '$ceo_nm', '$agency_id', (HEX(AES_ENCRYPT('$agency_pw','moneypig_tro_230412'))), (HEX(AES_ENCRYPT('$tel','moneypig_tro_230412'))), '$email', '$biz_num', '$address', '$address_det', '$account_bank', (HEX(AES_ENCRYPT('$account_num','moneypig_tro_230412'))), '$account_owner', 0, NOW())";
+					VALUES ('$agency_tp', 3, '$distributor_no', '$top_agency_no', '$agency_nm', '$ceo_nm', '$agency_id', (HEX(AES_ENCRYPT('$agency_pw',KEY))), (HEX(AES_ENCRYPT('$tel',KEY))), '$email', '$biz_num', '$address', '$address_det', '$account_bank', (HEX(AES_ENCRYPT('$account_num',KEY))), '$account_owner', 0, NOW())";
 
             // echo $sql;
 		}
     }
     if($mode == 'update') {
-        $sql = "UPDATE agency_info SET agency_nm = '$agency_nm', ceo_nm = '$ceo_nm', tel = (HEX(AES_ENCRYPT('$tel','moneypig_tro_230412'))), email = '$email',
-				biz_num = '$biz_num', address = '$address', address_det = '$address_det', account_bank = '$account_bank', account_num = (HEX(AES_ENCRYPT('$account_num','moneypig_tro_230412'))), account_owner = '$account_owner', up_reg_date = NOW()
+        $sql = "UPDATE agency_info SET agency_nm = '$agency_nm', ceo_nm = '$ceo_nm', tel = (HEX(AES_ENCRYPT('$tel',KEY))), email = '$email',
+				biz_num = '$biz_num', address = '$address', address_det = '$address_det', account_bank = '$account_bank', account_num = (HEX(AES_ENCRYPT('$account_num',KEY))), account_owner = '$account_owner', up_reg_date = NOW()
                 WHERE agency_no = '$no'";
     }
     if($mode == 'ok') {
@@ -187,7 +187,7 @@ if($board == 'sell') {
     }
 
 	if($mode == 'pass') {
-		$sql = "UPDATE agency_info SET agency_pw = (HEX(AES_ENCRYPT('$agency_pw','moneypig_tro_230412'))) WHERE agency_no = '$no'";
+		$sql = "UPDATE agency_info SET agency_pw = (HEX(AES_ENCRYPT('$agency_pw',KEY))) WHERE agency_no = '$no'";
 	}
 	
 }
@@ -252,12 +252,12 @@ if($board == 'mngr') {
 
 
 			$sql = "INSERT INTO agency_info (agency_tp, grade, distributor_no, top_agency_no, mid_agency_no, agency_nm, ceo_nm, agency_id, agency_pw, tel, email, biz_num, address, address_det, account_bank, account_num, account_owner, memb_tp, category, blog_url, blog_info, instar_url, instar_info, youtube_url, youtube_info, tictok_url, tictok_info, agency_state, reg_date)
-					VALUES ('$agency_tp', 4, '$distributor_no', '$top_agency_no', '$mid_agency_no', '$agency_nm', '$ceo_nm', '$agency_id', (HEX(AES_ENCRYPT('$agency_pw','moneypig_tro_230412'))), (HEX(AES_ENCRYPT('$tel','moneypig_tro_230412'))), '$email', '$biz_num', '$address', '$address_det', '$account_bank', (HEX(AES_ENCRYPT('$account_num','moneypig_tro_230412'))), '$account_owner', '$memb_tp', '$category', '$blog_url', '$blog_info', '$instar_url', '$instar_info', '$youtube_url', '$youtube_info', '$tictok_url', '$tictok_info', 0, NOW())";
+					VALUES ('$agency_tp', 4, '$distributor_no', '$top_agency_no', '$mid_agency_no', '$agency_nm', '$ceo_nm', '$agency_id', (HEX(AES_ENCRYPT('$agency_pw',KEY))), (HEX(AES_ENCRYPT('$tel',KEY))), '$email', '$biz_num', '$address', '$address_det', '$account_bank', (HEX(AES_ENCRYPT('$account_num',KEY))), '$account_owner', '$memb_tp', '$category', '$blog_url', '$blog_info', '$instar_url', '$instar_info', '$youtube_url', '$youtube_info', '$tictok_url', '$tictok_info', 0, NOW())";
 		}
     }
     if($mode == 'update') {
-        $sql = "UPDATE agency_info SET agency_nm = '$agency_nm', ceo_nm = '$ceo_nm', tel = (HEX(AES_ENCRYPT('$tel','moneypig_tro_230412'))), email = '$email',
-				biz_num = '$biz_num', address = '$address', address_det = '$address_det', account_bank = '$account_bank', account_num = (HEX(AES_ENCRYPT('$account_num','moneypig_tro_230412'))), account_owner = '$account_owner', up_reg_date = NOW(),
+        $sql = "UPDATE agency_info SET agency_nm = '$agency_nm', ceo_nm = '$ceo_nm', tel = (HEX(AES_ENCRYPT('$tel',KEY))), email = '$email',
+				biz_num = '$biz_num', address = '$address', address_det = '$address_det', account_bank = '$account_bank', account_num = (HEX(AES_ENCRYPT('$account_num',KEY))), account_owner = '$account_owner', up_reg_date = NOW(),
 				category = '$category', blog_url = '$blog_url', blog_info = '$blog_info', instar_url = '$instar_url', instar_info = '$instar_info', youtube_url = '$youtube_url', youtube_info = '$youtube_info', tictok_url = '$tictok_url', tictok_info = '$tictok_info'
                 WHERE agency_no = '$no'";
     }
@@ -287,7 +287,7 @@ if($board == 'mngr') {
     }
 
 	if($mode == 'pass') {
-		$sql = "UPDATE agency_info SET agency_pw = (HEX(AES_ENCRYPT('$agency_pw','moneypig_tro_230412'))) WHERE agency_no = '$no'";
+		$sql = "UPDATE agency_info SET agency_pw = (HEX(AES_ENCRYPT('$agency_pw',KEY))) WHERE agency_no = '$no'";
 	}
 	
 }
