@@ -9,7 +9,7 @@ $pay_no = $_GET['pay_no'] == null ? 0:$_GET['pay_no'];
 $param = null;
 
 if($pay_no != 0) {
-	$sql = "SELECT *, AES_DECRYPT(UNHEX(b.user_tel),'naghtglae_00710') as phone, b.user_grade as user_grade, a.state as state, a.user_no as user_no FROM pay_info a
+	$sql = "SELECT *, AES_DECRYPT(UNHEX(b.user_tel),KEY) as phone, b.user_grade as user_grade, a.state as state, a.user_no as user_no FROM pay_info a
 			LEFT OUTER JOIN user_info b ON a.user_no = b.user_no
 			WHERE a.pay_no = ".$pay_no;
 	$data = $pdo->row($sql, $param);
@@ -177,7 +177,7 @@ table.info_table {
         <div class="content_page">
             <p class="content_title">소속협회</p>
 				<?php if($data['association_nm'] != null && $data['association_nm'] != 0 && $data['agency_state'] == 1) {
-						$agcy = $pdo->row("SELECT *, AES_DECRYPT(UNHEX(boss_tel),'naghtglae_00710') as boss_tel FROM user_info WHERE user_no = '".$data['association_nm']."'", $param); 
+						$agcy = $pdo->row("SELECT *, AES_DECRYPT(UNHEX(boss_tel),KEY) as boss_tel FROM user_info WHERE user_no = '".$data['association_nm']."'", $param); 
 
 						if($agcy['sigun_seq'] > 0) {
 							$sql = "SELECT * FROM sigun_address WHERE seq = ".$agcy['sigun_seq'];
