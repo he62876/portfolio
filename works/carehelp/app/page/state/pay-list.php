@@ -26,7 +26,7 @@ if($pay_list != null) {
 	//echo ${'cnt_where'.$d['hire_no']};
 }
 
-$sql = "SELECT *, AES_DECRYPT(UNHEX(b.user_tel),'naghtglae_00710') as phone, b.user_no as user_no FROM pay_info a
+$sql = "SELECT *, AES_DECRYPT(UNHEX(b.user_tel),KEY) as phone, b.user_no as user_no FROM pay_info a
 		LEFT OUTER JOIN user_info b ON a.user_no = b.user_no
 		WHERE a.state = 1 AND a.hire_no = ".$hire_no.$user_no." ORDER BY membership DESC, pay ASC";
 $list_data = $pdo->query($sql, $param);
