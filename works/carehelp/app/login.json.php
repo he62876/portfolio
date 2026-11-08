@@ -13,16 +13,16 @@ if (ss_isUserLogOn())
 {
 	if(isset($_SESSION['grade'])) {
 		if((strpos($_SERVER['HTTP_USER_AGENT'], 'AppleWebKit/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false))  {
-			$ret = $pdo->row("SELECT AES_DECRYPT(UNHEX(user_tel),'naghtglae_00710') as user_tel,auth_num,association_nm FROM user_info WHERE user_no = ".$_SESSION['user_no']." AND state=1");
+			$ret = $pdo->row("SELECT AES_DECRYPT(UNHEX(user_tel),KEY) as user_tel,auth_num,association_nm FROM user_info WHERE user_no = ".$_SESSION['user_no']." AND state=1");
 			header('location: index.php?user_tel='.$ret["user_tel"].'&auth_num='.$ret["auth_num"].'&grade='.$_SESSION['grade'].'&user_no='.$_SESSION['user_no'].'&association_no='.($ret['association_nm']==null? 0:$ret['association_nm']));
 		}
 		else if(isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
-			$ret = $pdo->row("SELECT AES_DECRYPT(UNHEX(user_tel),'naghtglae_00710') as user_tel,auth_num,association_nm FROM user_info WHERE user_no = ".$_SESSION['user_no']." AND state=1");
+			$ret = $pdo->row("SELECT AES_DECRYPT(UNHEX(user_tel),KEY) as user_tel,auth_num,association_nm FROM user_info WHERE user_no = ".$_SESSION['user_no']." AND state=1");
 			header('location: index.php?user_tel='.$ret["user_tel"].'&auth_num='.$ret["auth_num"].'&grade='.$_SESSION['grade'].'&user_no='.$_SESSION['user_no'].'&association_no='.($ret['association_nm']==null? 0:$ret['association_nm']));
 			PhpLog("id:".$_SERVER['HTTP_X_REQUESTED_WITH']);
 		}
 		else{
-			$ret = $pdo->row("SELECT AES_DECRYPT(UNHEX(user_tel),'naghtglae_00710') as user_tel,auth_num,association_nm FROM user_info WHERE user_no = ".$_SESSION['user_no']." AND state=1");
+			$ret = $pdo->row("SELECT AES_DECRYPT(UNHEX(user_tel),KEY) as user_tel,auth_num,association_nm FROM user_info WHERE user_no = ".$_SESSION['user_no']." AND state=1");
 			header('location: index.php');
 		}
 	}
