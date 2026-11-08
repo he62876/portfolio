@@ -12,4 +12,4 @@
 　└works : 포트폴리오 내 사이트의 html, css 모음</br>
 　　└moneypig</br>
 　　　└admin : 작업한 admin 페이지의 일부. 회원가입, 회원관리, 로그인, 게시글관리, 정산, 엑셀 다운로드</br>
-　　　└report.php : 월별 성과 보고서. 달력 작성의 응용.
+　　　└report.php : 월별 성과 보고서, 달력 작성의 응용
