@@ -8,7 +8,7 @@ $param = null;
 
 $hire_no = $_GET['hire_no']==null? 0:$_GET['hire_no'];
 
-$sql = "SELECT *, AES_DECRYPT(UNHEX(patient_tel),'naghtglae_00710') as patient_tel FROM hire_info WHERE hire_no = ".$hire_no;
+$sql = "SELECT *, AES_DECRYPT(UNHEX(patient_tel),KEY) as patient_tel FROM hire_info WHERE hire_no = ".$hire_no;
 $data = $pdo->row($sql, $param);
 
 $date = date('Y-m-d H:m:s');
@@ -258,7 +258,7 @@ table td a {
 						<th>보호자</th>
 						<td>
 							<div class="d-flex justify-content-between align-items-center license">
-								<?php if($data['user_grade'] == 1) {$user_tel = $pdo->single("SELECT AES_DECRYPT(UNHEX(user_tel),'naghtglae_00710') FROM user_info WHERE user_no = ".$data['user_no'], $param); ?>
+								<?php if($data['user_grade'] == 1) {$user_tel = $pdo->single("SELECT AES_DECRYPT(UNHEX(user_tel),KEY) FROM user_info WHERE user_no = ".$data['user_no'], $param); ?>
 								<p><?=$user_tel?></p>
 								<a href="tel:<?=$user_tel?>">전화하기</a>
 								<?php } else { ?>
